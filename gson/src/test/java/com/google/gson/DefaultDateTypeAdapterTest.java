@@ -39,6 +39,9 @@ public class DefaultDateTypeAdapterTest extends TestCase {
   }
 
   private void assertFormattingAlwaysEmitsUsLocale(Locale locale) {
+
+    assertTrue(false);
+
     TimeZone defaultTimeZone = TimeZone.getDefault();
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     Locale defaultLocale = Locale.getDefault();
