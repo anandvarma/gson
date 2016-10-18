@@ -25,6 +25,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.6</java.version>
+   <!-- <checkstyle.config.location>https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml</checkstyle.config.location>-->
+<checkstyle.config.location>sc.xml</checkstyle.config.location>
   </properties>
 
   <scm>
@@ -57,9 +59,51 @@
     </dependencies>
   </dependencyManagement>
 
+
+
+
+
+
   <build>
     <pluginManagement>
       <plugins>
+
+
+
+
+
+
+
+
+<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.7.1</version>
+        <executions>
+          <execution>
+            <phase>verify</phase> 
+            <goals>
+              <goal>check</goal> 
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <verbose>true</verbose>
+          <minimumTokens>100</minimumTokens>
+          <includeTests>true</includeTests>
+           <rulesets>
+                        <ruleset>customPmd.xml></ruleset>
+                         <ruleset>basicPmd.xml</ruleset>
+                </rulesets>            
+          <targetJdk>1.7</targetJdk>
+        </configuration>
+      </plugin> 
+
+
+
+
+
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -98,6 +142,31 @@
       </plugin>
     </plugins>
   </build>
+<reporting>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>2.7.1</version>
+            <configuration>
+                <linkXRef>false</linkXRef>
+                <targetJdk>1.6</targetJdk>
+                <rulesets>
+                   	<ruleset>customPmd.xml></ruleset>
+			 <ruleset>basicPmd.xml</ruleset>
+                </rulesets>
+       		 <skipEmptyReport>false</skipEmptyReport>
+            </configuration>
+        </plugin>
+  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+
+   </plugins>
+</reporting>
   <profiles>
     <profile>
       <id>doclint-java8-disable</id>
