@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<ruleset name="customPmd">
+<description>
+Custom Rulesset
+</description>
+<rule name="PasswordNotAllowed" message="Do not pass passwords as a parameter" class="net.sourceforge.pmd.rules.XPathRule">
+<description>
+If we see DigitalOceanToken, indicates violation and is insecure
+</description>
+<properties>
+<property name="xpath">
+<value>
+<![CDATA[//VariableDeclaratorId[@Image='DigitalOceanToken'][string-length(@Image) &lt; 3]]]>
+</value>
+</property>
+</properties>
+<priority>5</priority>
+<example>
+<![CDATA[ public class RuleTest {
+ String PASSWORD="**";
+}
+]]>
+</example>
+</rule>
+
+<rule name="InvalidImports with *" message="Do not use such imports with *" class="net.sourceforge.pmd.rules.XPathRule">
+<description>no usage of * in imports , not acceptable</description>
+<priority>1</priority>
+<properties>
+<property name="xpath">
+<value>
+<![CDATA[/ImportDeclaration[@PackageName=@ImportedName]]]>
+</value>
+</property>
+</properties>
+<example>
+<![CDATA[
+import java.net.*; //is bad
+import java.net.URL; //is better
+]]>
+</example>
+</rule>
+
+
+<rule name="MissingThrowInCatch" message="MissingThrowInCatch" class="net.sourceforge.pmd.rules.XPathRule">
+<description>Missing Throw In Catch</description>
+<priority>1</priority>
+<properties>
+<property name="xpath">
+<value>
+<![CDATA[//CatchStatement[not(descendant::ThrowStatement)]]]>
+</value>
+</property>
+</properties>
+<example>
+<![CDATA[
+catch(Exception e)
+{
+			//is bad
+}
+catch (Exception e)
+ {
+	throw new Exception("Exception in PMDCheck.pmdValidate"+e);		//is better
+}
+]]>
+</example>
+</rule>
+
+
+</ruleset>
