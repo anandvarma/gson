@@ -67,6 +67,11 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
     elements.add(character == null ? JsonNull.INSTANCE : new JsonPrimitive(character));
   }
 
+
+  public void addXYZ(Character character) {
+    elements.add(character == null ? JsonNull.INSTANCE : new JsonPrimitive(character));
+  }
+
   /**
    * Adds the specified number to self.
    *
