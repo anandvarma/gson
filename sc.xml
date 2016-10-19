@@ -39,21 +39,17 @@
    		<property name="countEmpty" value="false"/>
 	</module>
 	<module name="BooleanExpressionComplexity">
-    		<property name="max" value="7"/>
+    		<property name="max" value="4"/>
 	</module>
 	<module name="ReturnCount">
-    		<property name="max" value="0"/>
+    		<property name="max" value="1"/>
    		 <property name="tokens" value="CTOR_DEF"/>
 	</module>
 	<module name="ReturnCount">
-   		 <property name="max" value="1"/>
+   		 <property name="max" value="2"/>
     		<property name="tokens" value="LAMBDA"/>
 	</module>
-	<module name="ReturnCount">
-  	 	<property name="max" value="2"/>
-    		<property name="tokens" value="METHOD_DEF"/>
-</module>
         
-</module>
+   </module>
 </module>             
 
